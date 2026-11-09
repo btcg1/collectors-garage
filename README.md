@@ -1,3 +1,3 @@
 # Collector's Garage
 
-Public catalogue and actual item photographs. Prices in SGD. Six asking-price tests started 9 November 2026. Release badges describe documented product features. No whole-collection value, private targets or inventory editor.
+Public Singapore catalogue, updated 9 November 2026. Actual item photographs, SGD asking prices and documented release badges. Free Holland Village MRT meetup, other mutually agreed locations add S$10. No mailing. Enquiries through Carousell. No private valuation notes, collection-value total or inventory editor.
