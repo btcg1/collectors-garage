@@ -1,3 +1,3 @@
 # Collector's Garage
 
-Static catalogue page. Open index.html. Photos are in photos/. Enquiries through Carousell only.
+Public catalogue and actual item photographs. Prices in SGD. Six asking-price tests started 9 November 2026. Release badges describe documented product features. No whole-collection value, private targets or inventory editor.
