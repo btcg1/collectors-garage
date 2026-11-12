@@ -140,7 +140,14 @@ header{z-index:25}.hero{padding-bottom:20px}.hero h1{max-width:660px}
 .reservation-detail{background:#b82028;border-block:2px solid #ff9393;color:#fff;padding:15px 20px;font-size:clamp(17px,2vw,23px);font-weight:900;line-height:1.35;text-align:center}
 @media(max-width:680px){.reservation-banner{font-size:20px;padding:10px 4px;letter-spacing:.07em}.reserved-tag{font-size:12px}}
 </style>
-</head>
+<style>
+.item.is-sold{border:2px solid #839aaf}.item.is-sold .imagebox>img{filter:brightness(.5) saturate(.2)}
+.sold-banner,.sold-tag,.sold-detail{background:#344b67;border-color:#abc9e6;color:#fff}
+.availability-sync{font-size:12px;color:#b9cbb3;margin:10px 0 16px}.availability-sync.stale{color:#ffd48b}
+.toolbar{grid-template-columns:minmax(200px,2fr) repeat(4,minmax(120px,1fr))}
+@media(max-width:1050px){.toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar .field:first-child{grid-column:1/-1}}
+@media(max-width:480px){.toolbar{grid-template-columns:1fr 1fr}}
+</style></head>
 <body>
 <header><div class="head"><a class="brand" href="#top" id="home-link"><span class="mark">CG</span><span>COLLECTOR'S GARAGE<small>SINGAPORE · PERSONAL COLLECTION</small></span></a><div class="header-actions"><button class="btn" id="home-btn">Listings</button><button class="btn primary" id="saved-btn">♡ Saved <span class="pillcount" id="saved-count">0</span></button></div></div></header>
 
@@ -150,7 +157,7 @@ header{z-index:25}.hero{padding-bottom:20px}.hero h1{max-width:660px}
 <section class="hero" id="top"><div><div class="eyebrow">PRIVATE COLLECTION · SINGAPORE</div><h1>Collect the<br><span>details.</span></h1><p>Browse 14 pick-and-choose Carousell listings featuring 180 individually priced items, including 40 loose diecast cars. Find your favourites by their letter-and-number labels, explore original photos, and ask for a combined quote.</p><div class="hero-stats"><div class="stat"><strong>14</strong>Listing groups</div><div class="stat"><strong>180</strong>Individual items</div><div class="stat"><strong>SGD</strong>Listed prices</div></div><a href="#catalogue" class="btn primary">Browse the listings ↓</a> <a href="#meetup" class="btn">Meetup terms</a></div><div class="hero-art" aria-label="Actual collection photographs"><div><img src="https://btcg1.github.io/collectors-garage/photos/HW045_01.webp" alt="Actual Hot Wheels Kenmeri"></div><div><img src="https://btcg1.github.io/collectors-garage/photos/HW056_01.webp" alt="Actual Mercedes AMG model"></div><div><img src="https://btcg1.github.io/collectors-garage/photos/HW067_01.webp" alt="Actual Nissan Skyline model"></div></div></section>
 
 <div class="steps" aria-label="How to buy"><div><span class="step-n">01</span><span><strong>Explore a listing</strong><small>Browse 14 groups, or search directly.</small></span></div><div><span class="step-n">02</span><span><strong>Save your favourites</strong><small>Tap the heart beside each item.</small></span></div><div><span class="step-n">03</span><span><strong>Copy your enquiry</strong><small>Send your selected labels on Carousell.</small></span></div></div><main class="wrap" id="catalogue" tabindex="-1"><div class="section-top"><div><div class="eyebrow">THE COLLECTION</div><h2 id="browse-title">Browse the listings.</h2></div><p id="match-count" role="status" aria-live="polite">14 listings · 180 items</p></div>
-<div class="toolbar"><div class="field"><label for="search">Search name, model or item label</label><div class="search-wrap"><input type="search" id="search" placeholder="e.g. Skyline, Porsche, J11" autocomplete="off" enterkeyhint="search" aria-describedby="search-help"><button id="clear-search" type="button" aria-label="Clear search" hidden>×</button></div><small id="search-help" class="field-help">Search shows matching individual items.</small></div><div class="field"><label for="category">Category</label><select id="category"><option value="all">All categories</option><option value="diecast">Diecast</option><option value="anime">Anime and merch</option><option value="books">Books and manga</option><option value="games">Games</option></select></div><div class="field"><label for="price-range">Price per item</label><select id="price-range"><option value="all">Any price</option><option value="under10">Under S$10</option><option value="10to29">S$10 to S$29</option><option value="30to59">S$30 to S$59</option><option value="60plus">S$60 and above</option></select></div><div class="field"><label for="sort">Sort</label><select id="sort"><option value="original">Original listing order</option><option value="low">Price low to high</option><option value="high">Price high to low</option><option value="az">Name A to Z</option></select></div></div><button type="button" class="reset-filters btn tiny" id="clear-filters" hidden>Clear all filters ×</button>
+<p id="availability-sync" class="availability-sync" role="status" aria-live="polite">Checking live availability…</p><div class="toolbar"><div class="field"><label for="search">Search name, model or item label</label><div class="search-wrap"><input type="search" id="search" placeholder="e.g. Skyline, Porsche, J11" autocomplete="off" enterkeyhint="search" aria-describedby="search-help"><button id="clear-search" type="button" aria-label="Clear search" hidden>×</button></div><small id="search-help" class="field-help">Search shows matching individual items.</small></div><div class="field"><label for="category">Category</label><select id="category"><option value="all">All categories</option><option value="diecast">Diecast</option><option value="anime">Anime and merch</option><option value="books">Books and manga</option><option value="games">Games</option></select></div><div class="field"><label for="availability-filter">Availability</label><select id="availability-filter"><option value="all">All statuses</option><option>Available</option><option>Reserved</option><option>Sold</option></select></div><div class="field"><label for="price-range">Price per item</label><select id="price-range"><option value="all">Any price</option><option value="under10">Under S$10</option><option value="10to29">S$10 to S$29</option><option value="30to59">S$30 to S$59</option><option value="60plus">S$60 and above</option></select></div><div class="field"><label for="sort">Sort</label><select id="sort"><option value="original">Original listing order</option><option value="low">Price low to high</option><option value="high">Price high to low</option><option value="az">Name A to Z</option></select></div></div><button type="button" class="reset-filters btn tiny" id="clear-filters" hidden>Clear all filters ×</button>
 <div class="switches"><div class="switch" role="group" aria-label="Browsing mode"><button type="button" class="active" id="show-groups" aria-pressed="true">14 listings</button><button type="button" id="show-all" aria-pressed="false">All 180 items</button></div><button class="btn tiny saved-filter" type="button" id="saved-only" aria-pressed="false">♡ Show saved only</button><div class="muted" id="view-hint">Open a listing to see labelled items.</div></div>
 <section class="group-back" id="group-header" hidden></section><div id="results"></div><div class="empty" id="empty" hidden></div>
 <div class="tip">Every price is negotiable, including rare models. Pick any items across all 14 listings and ask for an individual offer or a combined bundle price.</div>
@@ -175,13 +182,16 @@ const galleryByCode=code=>byCode.get(code)?.photos||[];
 const defaultTitle="Collector's Garage | 14 Carousell Listings";
 const defaultDescription="Browse 14 Carousell listing groups and 180 individually priced collectibles in Singapore.";
 const isReserved=x=>x?.status==='Reserved';
-const reservedTag=x=>isReserved(x)?'<span class="reserved-tag">RESERVED</span>':'';
-const reservationOverlay=x=>isReserved(x)?'<span class="reservation-banner">RESERVED</span>':'';
+const isSold=x=>x?.status==='Sold';
+const isAvailable=x=>!isReserved(x)&&!isSold(x);
+const statusOf=x=>isSold(x)?'Sold':isReserved(x)?'Reserved':'Available';
+const reservedTag=x=>!isAvailable(x)?`<span class="reserved-tag ${isSold(x)?'sold-tag':''}">${statusOf(x).toUpperCase()}</span>`:'';
+const reservationOverlay=x=>!isAvailable(x)?`<span class="reservation-banner ${isSold(x)?'sold-banner':''}">${statusOf(x).toUpperCase()}</span>`:'';
 const savedKey='collector_saved_codes';
 let saved=new Set();
 try { saved=new Set(JSON.parse(localStorage.getItem(savedKey)||'[]')); } catch {}
 saved=new Set([...saved].filter(code=>byCode.has(code)));
-const state={mode:'groups',group:null,search:'',category:'all',price:'all',sort:'original',savedOnly:false};
+const state={mode:'groups',group:null,search:'',category:'all',price:'all',sort:'original',savedOnly:false,status:'all'};
 let itemFocus=null, panelFocus=null, zoomFocus=null, openCode=null, imageIndex=0, toastTimeout=null;
 let zoomOpen=false;
 function persist(){try{localStorage.setItem(savedKey,JSON.stringify([...saved]))}catch{}$('#saved-count').textContent=saved.size;$('#saved-fab-count').textContent=saved.size;$('#saved-fab').hidden=saved.size===0}
@@ -194,6 +204,7 @@ function saveItem(code){if(!byCode.has(code))return;if(saved.has(code))saved.del
 function filteredItems(){const query=state.search.trim().toLowerCase();return items.filter(item=>{
  if(state.savedOnly&&!saved.has(item.code))return false;
  if(state.category!=='all'&&item.category!==state.category)return false;
+ if(state.status!=='all'&&statusOf(item)!==state.status)return false;
  if(state.price==='under10'&&item.price>=10)return false;
  if(state.price==='10to29'&&(item.price<10||item.price>=30))return false;
  if(state.price==='30to59'&&(item.price<30||item.price>=60))return false;
@@ -209,14 +220,14 @@ function groupOrder(gs){if(state.sort==='original')return gs;
 function groupCodes(g){return g.codeLabel||`${g.codes[0]} to ${g.codes.at(-1)}`}
 function photoTag(x,loading='lazy'){return `<img src="${safe(x.photos[0])}" alt="${safe(x.title)}, actual item photo" loading="${loading}" decoding="async">`}
 function groupCard(g,matches){const collection=items.filter(x=>x.group===g.id);
- const available=collection.filter(x=>!isReserved(x)), reservedCount=collection.length-available.length;
+ const available=collection.filter(isAvailable), reservedCount=collection.filter(isReserved).length, soldCount=collection.filter(isSold).length;
  const floor=available.length?Math.min(...available.map(x=>x.price)):null;
- const images=collection.slice(0,4).map(x=>`<div class="${isReserved(x)?'has-reservation':''}">${photoTag(x)}${reservationOverlay(x)}</div>`).join('');
+ const images=collection.slice(0,4).map(x=>`<div class="${!isAvailable(x)?'has-reservation':''}">${photoTag(x)}${reservationOverlay(x)}</div>`).join('');
  const description=g.description.replace(/Price shown is[^.]*\.\s*/g,'').replace(/Codes match the labels on the photos\./g,'').trim();
- return `<article class="group"><button type="button" class="group-main" data-open-group="${safe(g.id)}" aria-label="Browse ${safe(g.name)}, ${collection.length} items"><div class="group-images">${images}</div><div class="group-details"><div class="group-code">${safe(g.id)} · ${collection.length} items · ${safe(groupCodes(g))}</div><h3>${safe(g.name)}</h3><p>${safe(description)}</p>${reservedCount?`<div class="reserved-notice">${available.length} available · ${reservedCount} reserved</div>`:''}<div class="group-bottom"><div><small>${available.length?'Available prices from':'Availability'}</small><strong>${available.length?money(floor):'All reserved'}</strong>${matches.length!==collection.length?`<small>${matches.length} matching</small>`:''}</div><span class="btn tiny primary faux-button">View items <span aria-hidden="true">→</span></span></div></div></button></article>`}
+ return `<article class="group"><button type="button" class="group-main" data-open-group="${safe(g.id)}" aria-label="Browse ${safe(g.name)}, ${collection.length} items"><div class="group-images">${images}</div><div class="group-details"><div class="group-code">${safe(g.id)} · ${collection.length} items · ${safe(groupCodes(g))}</div><h3>${safe(g.name)}</h3><p>${safe(description)}</p>${reservedCount||soldCount?`<div class="reserved-notice">${available.length} available · ${reservedCount} reserved · ${soldCount} sold</div>`:''}<div class="group-bottom"><div><small>${available.length?'Available prices from':'Availability'}</small><strong>${available.length?money(floor):soldCount===collection.length?'All sold':'None available'}</strong>${matches.length!==collection.length?`<small>${matches.length} matching</small>`:''}</div><span class="btn tiny primary faux-button">View items <span aria-hidden="true">→</span></span></div></div></button></article>`}
 function itemCard(x){const group=byGroup.get(x.group);
- return `<article class="item ${isReserved(x)?'is-reserved':''}"><button class="item-open" type="button" data-open-item="${safe(x.code)}" aria-label="View ${safe(x.code)} ${safe(x.title)} details"><div class="imagebox">${photoTag(x)}<span class="code">${safe(x.code)}</span>${reservationOverlay(x)}</div><div class="item-info"><div class="item-meta">${safe(x.group)} · ${safe(group.name)}</div><h3>${safe(x.title)}</h3>${reservedTag(x)}<div class="item-note">${safe(x.note||'See actual photographs and full details')}</div><div class="item-footer"><span class="item-price">${money(x.price)}</span><span class="card-link">View details ↗</span></div></div></button><button class="heart ${saved.has(x.code)?'saved':''}" data-save="${safe(x.code)}" type="button" aria-label="${saved.has(x.code)?'Remove':'Save'} ${safe(x.title)} ${saved.has(x.code)?'from':'to'} saved items" aria-pressed="${saved.has(x.code)}">${saved.has(x.code)?'♥':'♡'}</button></article>`}
-function visibleControls(){const active=!!(state.search||state.category!=='all'||state.price!=='all'||state.savedOnly);
+ return `<article class="item ${isReserved(x)?'is-reserved':isSold(x)?'is-sold':''}"><button class="item-open" type="button" data-open-item="${safe(x.code)}" aria-label="View ${safe(x.code)} ${safe(x.title)} details"><div class="imagebox">${photoTag(x)}<span class="code">${safe(x.code)}</span>${reservationOverlay(x)}</div><div class="item-info"><div class="item-meta">${safe(x.group)} · ${safe(group.name)}</div><h3>${safe(x.title)}</h3>${reservedTag(x)}<div class="item-note">${safe(x.note||'See actual photographs and full details')}</div><div class="item-footer"><span class="item-price">${money(x.price)}</span><span class="card-link">View details ↗</span></div></div></button><button class="heart ${saved.has(x.code)?'saved':''}" data-save="${safe(x.code)}" type="button" aria-label="${saved.has(x.code)?'Remove':'Save'} ${safe(x.title)} ${saved.has(x.code)?'from':'to'} saved items" aria-pressed="${saved.has(x.code)}">${saved.has(x.code)?'♥':'♡'}</button></article>`}
+function visibleControls(){const active=!!(state.search||state.category!=='all'||state.price!=='all'||state.status!=='all'||state.savedOnly);
  $('#clear-filters').hidden=!active;
  $('#clear-search').hidden=state.search==='';
  $('#saved-only').classList.toggle('active',state.savedOnly);
@@ -249,7 +260,7 @@ function render(){let matched=filteredItems();const inGroup=state.mode==='items'
  $('#empty').innerHTML=`<strong>No matching items</strong><p>Try a different name, item label or price range.</p><button class="btn" data-reset-filter type="button">Clear filters</button>`;
  setTitle();persist();
 }
-function resetFilters(){state.search='';state.category='all';state.price='all';state.savedOnly=false;$('#search').value='';$('#category').value='all';$('#price-range').value='all';render()}
+function resetFilters(){state.search='';state.category='all';state.price='all';state.status='all';state.savedOnly=false;$('#availability-filter').value='all';$('#search').value='';$('#category').value='all';$('#price-range').value='all';render()}
 function showGroups(clear=false){state.group=null;state.mode='groups';if(clear)resetFilters();else render();updateHash('catalogue');$('#catalogue').scrollIntoView({behavior:'smooth'})}
 function showAll(){state.group=null;state.mode='items';render();updateHash('all');$('#catalogue').scrollIntoView({behavior:'smooth'})}
 function openGroup(id,route=true){if(!byGroup.has(id))return;state.group=id;state.mode='items';state.sort='original';$('#sort').value='original';
@@ -258,8 +269,8 @@ function openGroup(id,route=true){if(!byGroup.has(id))return;state.group=id;stat
 }
 function viewItem(code,route=true){const x=byCode.get(code);if(!x)return;itemFocus=document.activeElement;openCode=code;imageIndex=0;let photos=x.photos;
  const thumbs=photos.map((src,i)=>`<button class="${i===0?'active':''}" data-photo="${i}" type="button" aria-label="Show image ${i+1} of ${photos.length}"><img loading="lazy" decoding="async" src="${safe(src)}" alt="Preview ${i+1}"></button>`).join('');
- const discount=isReserved(x)?'Reserved for another buyer. Ask to be notified if it becomes available.':'Open to offers, individually or bundled with any other item';
- const modal=$('#modal');modal.innerHTML=`<div class="modal-toolbar"><h3>${safe(x.group)} · Item ${safe(x.code)}</h3><button class="btn" data-close type="button" aria-label="Close item details">Close ×</button></div>${isReserved(x)?'<div class="reservation-detail" role="status">RESERVED. Not currently available.</div>':''}<div class="modal-content"><div class="gallery"><button class="modal-photo" data-zoom-photo type="button" aria-label="Enlarge photo of ${safe(x.title)}"><img id="main-photo" src="${safe(photos[0])}" alt="${safe(x.title)}, actual photo"><span class="zoom-prompt">Click to enlarge <span aria-hidden="true">⤢</span></span></button><div class="gallery-bottom"><button class="gallery-nav" type="button" data-gallery-prev aria-label="Previous photo" ${photos.length<2?'disabled':''}>←</button><span id="photo-count">Photo 1 of ${photos.length}</span><button class="gallery-nav" type="button" data-gallery-next aria-label="Next photo" ${photos.length<2?'disabled':''}>→</button></div><div class="thumbs" aria-label="Product photos">${thumbs}</div></div><div class="detail"><span class="code">${safe(code)}</span><div class="item-meta" style="margin-top:10px">${safe(byGroup.get(x.group).name)}</div><h2 id="item-modal-title">${safe(x.title)}</h2><div class="detail-price">${money(x.price)} <span class="offer-note">${isReserved(x)?'Reserved':'Offers welcome'}</span></div><p>${safe(x.note||'Condition as photographed. Please inspect the item photographs.')}</p><table class="detail-table"><tr><td>Listing</td><td>${safe(x.group)} · ${safe(byGroup.get(x.group).name)}</td></tr><tr><td>Item label</td><td><strong>${safe(x.code)}</strong> (${safe(x.id)})</td></tr><tr><td>Photos</td><td>${photos.length} actual item ${photos.length===1?'photo':'photos'}</td></tr><tr><td>Availability</td><td>${isReserved(x)?'Reserved':'Available, confirm in chat'}</td></tr><tr><td>Offers</td><td>${safe(discount)}</td></tr><tr><td>Collection</td><td>Holland Village MRT free. Other agreed locations +S$10. No mailing.</td></tr></table><div class="modal-actions"><button class="btn primary" data-save-modal="${safe(code)}" type="button" aria-pressed="${saved.has(code)}">${saved.has(code)?'♥ Saved':'♡ Save this item'}</button><button class="btn" data-copy-item="${safe(code)}" type="button">Copy enquiry</button><button class="btn" data-share-item="${safe(code)}" type="button">Share item</button></div><p class="modal-small">Prices are asking prices. Message on Carousell to confirm availability.</p></div></div>`;
+ const discount=isSold(x)?'Sold. No longer available.':isReserved(x)?'Reserved for another buyer. Ask to be notified if it becomes available.':'Open to offers, individually or bundled with any other item';
+ const modal=$('#modal');modal.innerHTML=`<div class="modal-toolbar"><h3>${safe(x.group)} · Item ${safe(x.code)}</h3><button class="btn" data-close type="button" aria-label="Close item details">Close ×</button></div>${!isAvailable(x)?`<div class="reservation-detail ${isSold(x)?'sold-detail':''}" role="status">${isSold(x)?'SOLD. No longer available.':'RESERVED. Not currently available.'}</div>`:''}<div class="modal-content"><div class="gallery"><button class="modal-photo" data-zoom-photo type="button" aria-label="Enlarge photo of ${safe(x.title)}"><img id="main-photo" src="${safe(photos[0])}" alt="${safe(x.title)}, actual photo"><span class="zoom-prompt">Click to enlarge <span aria-hidden="true">⤢</span></span></button><div class="gallery-bottom"><button class="gallery-nav" type="button" data-gallery-prev aria-label="Previous photo" ${photos.length<2?'disabled':''}>←</button><span id="photo-count">Photo 1 of ${photos.length}</span><button class="gallery-nav" type="button" data-gallery-next aria-label="Next photo" ${photos.length<2?'disabled':''}>→</button></div><div class="thumbs" aria-label="Product photos">${thumbs}</div></div><div class="detail"><span class="code">${safe(code)}</span><div class="item-meta" style="margin-top:10px">${safe(byGroup.get(x.group).name)}</div><h2 id="item-modal-title">${safe(x.title)}</h2><div class="detail-price">${money(x.price)} <span class="offer-note">${!isAvailable(x)?statusOf(x):'Offers welcome'}</span></div><p>${safe(x.note||'Condition as photographed. Please inspect the item photographs.')}</p><table class="detail-table"><tr><td>Listing</td><td>${safe(x.group)} · ${safe(byGroup.get(x.group).name)}</td></tr><tr><td>Item label</td><td><strong>${safe(x.code)}</strong> (${safe(x.id)})</td></tr><tr><td>Photos</td><td>${photos.length} actual item ${photos.length===1?'photo':'photos'}</td></tr><tr><td>Availability</td><td>${!isAvailable(x)?statusOf(x):'Available, confirm in chat'}</td></tr><tr><td>Offers</td><td>${safe(discount)}</td></tr><tr><td>Collection</td><td>Holland Village MRT free. Other agreed locations +S$10. No mailing.</td></tr></table><div class="modal-actions"><button class="btn primary" data-save-modal="${safe(code)}" type="button" aria-pressed="${saved.has(code)}">${saved.has(code)?'♥ Saved':'♡ Save this item'}</button><button class="btn" data-copy-item="${safe(code)}" type="button" ${isSold(x)?'disabled':''}>${isSold(x)?'Sold':'Copy enquiry'}</button><button class="btn" data-share-item="${safe(code)}" type="button">Share item</button></div><p class="modal-small">Prices are asking prices. Message on Carousell to confirm availability.</p></div></div>`;
  modal.setAttribute('aria-labelledby','item-modal-title');$('#overlay').classList.add('open');document.body.classList.add('no-scroll');modal.querySelector('[data-close]').focus();setTitle();if(route)updateHash('item='+encodeURIComponent(code));
 }
 function showPhoto(index){if(!openCode)return;const photos=galleryByCode(openCode);imageIndex=(index+photos.length)%photos.length;
@@ -273,19 +284,20 @@ function openPhotoZoom(){if(!openCode)return;zoomFocus=document.activeElement;zo
 function closeItem(restoreHash=true){closePhotoZoom();if(!$('#overlay').classList.contains('open'))return;$('#overlay').classList.remove('open');document.body.classList.remove('no-scroll');openCode=null;setTitle();
  if(restoreHash)updateHash(state.group?'listing='+encodeURIComponent(state.group):state.mode==='items'?'all':'catalogue',true);
  if(itemFocus&&document.contains(itemFocus))itemFocus.focus();else $('#catalogue').focus({preventScroll:true})}
-function bundleQuote(rows){const eligible=rows.filter(x=>!isReserved(x)),count=eligible.length;
+function bundleQuote(rows){const eligible=rows.filter(isAvailable),count=eligible.length;
  const rate=count>=6?.15:count>=4?.10:count>=2?.05:0;
  const original=eligible.reduce((s,x)=>s+x.price,0),discount=eligible.reduce((s,x)=>s+x.price,0)*rate;
  return{eligible:count,original,rate,discount,estimate:Math.round((original-discount)*100)/100};
 }
-function enquiry(rows){const available=rows.filter(x=>!isReserved(x)),held=rows.filter(isReserved);
+function enquiry(rows){const available=rows.filter(isAvailable),held=rows.filter(isReserved);
+ if(!available.length&&!held.length)return '';
  const lines=available.map(x=>`${x.code} (${x.group}) ${x.title} (${money(x.price)})`).join('\n');
  const waiting=held.length?'\n\nReserved items, please let me know if they become available:\n'+held.map(x=>`${x.code} (${x.group}) ${x.title} [Reserved]`).join('\n'):'';
  return `Hi, I am interested in these Collector's Garage items:${available.length?'\n\n'+lines:''}${waiting}\n\n${available.length?'Could you confirm availability and your best price for the available items? Individual and mixed bundles are negotiable.':'I understand these items are reserved.'} Free meetup at Holland Village MRT works for me. Thank you!`;
 }
 function copyListing(groupId){const group=byGroup.get(groupId);if(!group)return'';
  const rows=items.filter(x=>x.group===groupId);
- const descriptions=rows.map(x=>`${x.code}. ${x.title} | ${money(x.price)}${isReserved(x)?' [RESERVED]':''}${x.note?'\n'+x.note:''}`).join('\n\n');
+ const descriptions=rows.map(x=>`${x.code}. ${x.title} | ${money(x.price)}${!isAvailable(x)?' ['+statusOf(x).toUpperCase()+']':''}${x.note?'\n'+x.note:''}`).join('\n\n');
  const terms='\nAll individual items and bundles are negotiable. Buyers can mix items from any category or listing group.\n';
  return `${group.headline}\n\n${group.description}\n\n${descriptions}\n\nHOW TO BUY\nMessage me the labels you want, such as ${rows[0].code} or ${rows[Math.min(1,rows.length-1)].code}. Individual items can be purchased.\n${terms}\nFree meetup at Holland Village MRT. Other agreed locations +S$10. No mailing.`;
 }
@@ -299,11 +311,11 @@ async function copyText(value,successMessage='Copied to clipboard'){
 }
 function itemLink(code){return location.href.split('#')[0]+'#item='+encodeURIComponent(code)}
 function listingLink(id){return location.href.split('#')[0]+'#listing='+encodeURIComponent(id)}
-function renderSaved(){const rows=items.filter(x=>saved.has(x.code)),available=rows.filter(x=>!isReserved(x)),held=rows.filter(isReserved),quote=bundleQuote(rows);
+function renderSaved(){const rows=items.filter(x=>saved.has(x.code)),available=rows.filter(isAvailable),held=rows.filter(isReserved),gone=rows.filter(isSold),quote=bundleQuote(rows);
  $('#saved-count').textContent=rows.length;
  $('#saved-list').innerHTML=rows.length?rows.map(x=>`<div class="saved-row"><button type="button" data-open-saved="${safe(x.code)}" class="saved-photo" aria-label="View ${safe(x.title)} details">${photoTag(x)}</button><div class="saved-main"><span class="code">${safe(x.code)}</span><h3>${safe(x.title)}</h3>${reservedTag(x)}<strong>${money(x.price)}</strong></div><button class="saved-remove" type="button" data-remove="${safe(x.code)}" aria-label="Remove ${safe(x.title)} from saved items">Remove</button></div>`).join(''):`<div class="shortlist-empty"><span aria-hidden="true">♡</span><h3>No items saved yet</h3><p>Browse a listing and tap the heart on any item you like. Your choices stay saved on this device.</p><button class="btn primary" id="start-browsing" type="button">Browse listings</button></div>`;
- $('#saved-total').innerHTML=available.length?`<div class="price-line"><span>Available items total</span><strong>${asMoney(quote.original)}</strong></div>${quote.rate?`<div class="price-line"><span>Illustrative bundle saving (${Math.round(quote.rate*100)}%)</span><strong>−${asMoney(quote.discount)}</strong></div>`:''}<div class="price-line quote-total"><span>${quote.rate?'Guide total, negotiable':'Asking subtotal, negotiable'}</span><strong>${asMoney(quote.estimate)}</strong></div><small>${available.length===1?'Offers welcome on this available item.':`Indicative multi-item savings apply to ${available.length} available saved items, regardless of category.`}${held.length?' Reserved items are excluded from these totals.':''} The estimate is a guide, not a firm quote. All offers are negotiable. Confirm the final price and availability in Carousell chat.</small>`:held.length?'<p class="reserved-notice">All saved items are reserved. You can copy an enquiry asking to be notified if they become available.</p>':'';
- $('#copy-saved').disabled=!rows.length;$('#clear-saved').disabled=!rows.length;
+ $('#saved-total').innerHTML=available.length?`<div class="price-line"><span>Available items total</span><strong>${asMoney(quote.original)}</strong></div>${quote.rate?`<div class="price-line"><span>Illustrative bundle saving (${Math.round(quote.rate*100)}%)</span><strong>−${asMoney(quote.discount)}</strong></div>`:''}<div class="price-line quote-total"><span>${quote.rate?'Guide total, negotiable':'Asking subtotal, negotiable'}</span><strong>${asMoney(quote.estimate)}</strong></div><small>${available.length===1?'Offers welcome on this available item.':`Indicative multi-item savings apply to ${available.length} available saved items, regardless of category.`}${held.length||gone.length?' Reserved and sold items are excluded from these totals.':''} The estimate is a guide, not a firm quote. All offers are negotiable. Confirm the final price and availability in Carousell chat.</small>`:held.length?'<p class="reserved-notice">All saved items are reserved. You can copy an enquiry asking to be notified if they become available.</p>':gone.length?'<p class="reserved-notice">These saved items have sold and are no longer available.</p>':'';
+ $('#copy-saved').disabled=!(available.length||held.length);$('#clear-saved').disabled=!rows.length;
 }
 function openSaved(){panelFocus=document.activeElement;if(openCode)closeItem();$('#shortlist-backdrop').hidden=false;$('#shortlist').classList.add('open');$('#shortlist').setAttribute('aria-hidden','false');$('#shortlist').inert=false;document.body.classList.add('no-scroll');renderSaved();$('#close-shortlist').focus()}
 function closeSaved(){if(!$('#shortlist').classList.contains('open'))return;$('#shortlist').classList.remove('open');$('#shortlist').setAttribute('aria-hidden','true');$('#shortlist').inert=true;$('#shortlist-backdrop').hidden=true;document.body.classList.remove('no-scroll');if(panelFocus&&document.contains(panelFocus))panelFocus.focus();else $('#saved-btn').focus()}
@@ -327,6 +339,7 @@ $('#search').addEventListener('input',event=>{state.search=event.target.value;if
 $('#search').addEventListener('keydown',event=>{if(event.key==='Escape'){event.target.value='';state.search='';render()}});
 $('#clear-search').addEventListener('click',()=>{state.search='';$('#search').value='';render();$('#search').focus()});
 $('#clear-filters').addEventListener('click',resetFilters);
+$('#availability-filter').addEventListener('change',event=>{state.status=event.target.value;state.mode='items';render()});
 $('#category').addEventListener('change',event=>{state.category=event.target.value;render()});
 $('#price-range').addEventListener('change',event=>{state.price=event.target.value;render()});
 $('#sort').addEventListener('change',event=>{state.sort=event.target.value;render()});
@@ -381,8 +394,29 @@ document.addEventListener('keydown',event=>{
 });
 window.addEventListener('popstate',routeFromHash);
 persist();render();renderSaved();routeFromHash();
+const availabilityFeed='https://collectors-garage-availability.benedict2807.chatgpt.site/statuses';
+let syncingAvailability=false,availabilityVersion=-1;
+async function syncAvailability(){
+ if(syncingAvailability)return;syncingAvailability=true;
+ const label=$('#availability-sync');
+ try{
+  const r=await fetch(availabilityFeed,{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(16000)});
+  if(!r.ok)throw Error('Availability unavailable');const data=await r.json();
+  if(data.schema!==1||!Number.isSafeInteger(data.version)||!data.statuses||typeof data.statuses!=='object')throw Error('Invalid availability');
+  if(items.some(x=>!['Available','Reserved','Sold'].includes(data.statuses[x.code])))throw Error('Incomplete availability');
+  if(data.version<availabilityVersion)throw Error('Older availability');
+  const changed=items.filter(x=>statusOf(x)!==data.statuses[x.code]);
+  for(const x of items)x.status=data.statuses[x.code];availabilityVersion=data.version;
+  if(changed.length){const active=document.activeElement,code=openCode,photo=imageIndex;render();renderSaved();if(code&&changed.some(x=>x.code===code)){viewItem(code,false);showPhoto(photo);}else if(active?.dataset?.save){document.querySelector(`[data-save="${CSS.escape(active.dataset.save)}"]`)?.focus({preventScroll:true});}}
+  label.classList.remove('stale');label.textContent='Availability checked '+new Date().toLocaleTimeString('en-SG',{timeZone:'Asia/Singapore',hour:'2-digit',minute:'2-digit'})+' SGT. Updates automatically.';
+ }catch{label.classList.add('stale');label.textContent='Live availability could not refresh. Confirm availability in Carousell chat.';}
+ finally{syncingAvailability=false;}
+}
+syncAvailability();setInterval(()=>{if(!document.hidden)syncAvailability()},30000);
+window.addEventListener('focus',syncAvailability);document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncAvailability()});
 </script>
 </body></html>
+
 
 
 
